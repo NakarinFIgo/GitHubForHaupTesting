@@ -35,7 +35,11 @@ class _ProductListsState extends State<ProductLists> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Product List")),
+      appBar: AppBar(
+        title: const Text("Product List"),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        centerTitle: true,
+      ),
       body: _products == null
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(

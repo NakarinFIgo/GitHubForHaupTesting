@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Productlist extends StatefulWidget {
-  const Productlist({super.key});
+class SmartphonesPage extends StatelessWidget {
+  const SmartphonesPage({super.key});
 
-  @override
-  State<Productlist> createState() => _ProductlistState();
-}
-
-class _ProductlistState extends State<Productlist> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Smartphones'),
+      ),
+      body: const Center(
+        child: Text('This is the Smartphones page'),
+      ),
+    );
   }
 }

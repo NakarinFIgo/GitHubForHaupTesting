@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:haup_test/category.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,89 +12,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter App',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple,primary: Colors.purple),
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Categories',
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SmartphonesPage()),
-                );
-              },
-              child: const Text('smartphones'),
-            ),
-            const SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LaptopsPage()),
-                );
-              },
-              child: const Text('laptops'),
-            ),
-          ],
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.purple,
+          primary: Colors.purple, // This sets the primary color for the app bar
         ),
       ),
+      home: const Categorys(),
     );
   }
 }
 
-class SmartphonesPage extends StatelessWidget {
-  const SmartphonesPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Smartphones'),
-      ),
-      body: const Center(
-        child: Text('This is the Smartphones page'),
-      ),
-    );
-  }
-}
-
-class LaptopsPage extends StatelessWidget {
-  const LaptopsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Laptops'),
-      ),
-      body: const Center(
-        child: Text('This is the Laptops page'),
-      ),
-    );
-  }
-}

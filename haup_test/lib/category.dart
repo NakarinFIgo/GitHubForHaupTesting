@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:haup_test/sidebar.dart';
 import 'package:http/http.dart' as http;
 import 'productlist.dart';
 
@@ -12,6 +13,9 @@ class Categorys extends StatefulWidget {
 
 class _CategorysState extends State<Categorys> {
   List<dynamic> futureCategories = [];
+
+  // Language state
+  String currentLanguage = 'en'; // Default language
 
   @override
   void initState() {
@@ -27,19 +31,31 @@ class _CategorysState extends State<Categorys> {
     });
   }
 
+  // Function to change language
+  void changeLanguage(String languageCode) {
+    setState(() {
+      currentLanguage = languageCode;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Categories',style: TextStyle(fontSize: 24),),
+        title: currentLanguage == 'en'? const Text('Categories', style: TextStyle(fontSize: 24)):const Text('หมวดหมู่สินค้า', style: TextStyle(fontSize: 24)) ,
+      ),
+      drawer: Sidebar(
+        onLanguageChanged: changeLanguage,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 5,),
+            padding: const EdgeInsets.symmetric(vertical: 5),
             decoration: const BoxDecoration(
-              border: Border(bottom: BorderSide(color:Color.fromARGB(74, 46, 44, 44), width: 1)),
+              border: Border(
+                  bottom: BorderSide(
+                      color: Color.fromARGB(74, 46, 44, 44), width: 1)),
             ),
           ),
           Expanded(
@@ -59,7 +75,8 @@ class _CategorysState extends State<Categorys> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProductLists(path: result['slug']),
+                          builder: (context) =>
+                              ProductLists(path: result['slug']),
                         ),
                       );
                     },

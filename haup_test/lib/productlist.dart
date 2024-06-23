@@ -36,7 +36,11 @@ class _ProductListsState extends State<ProductLists> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.path.toUpperCase(),style: const TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),),
+        title: Text(
+          widget.path.toUpperCase(),
+          style: const TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         backgroundColor: Colors.green,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
@@ -47,16 +51,32 @@ class _ProductListsState extends State<ProductLists> {
               itemCount: _products?.length,
               itemBuilder: (context, index) {
                 final product = _products![index];
-                return ListTile(
-                  leading: Image.network(product['thumbnail'],
-                  fit: BoxFit.contain,
-                  width: 100,
-                  height: 80,
+                return Column(children: [
+                  ListTile(
+                    leading: Image.network(
+                      product['thumbnail'],
+                      fit: BoxFit.contain,
+                      width: 100,
+                      height: 80,
+                    ),
+                    title: Text(product['title']),
+                    subtitle: Text(
+                      product['description'],
+                      maxLines: 2,
+                    ),
+                    trailing: Text(
+                      '\$${product['price']}',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                          fontSize: 16),
+                    ),
                   ),
-                  title: Text(product['title']),
-                  subtitle: Text(product['description'],maxLines: 2,),
-                  trailing: Text('\$${product['price']}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 16),),
-                );
+                  const Divider(
+                    height: 1,
+                    color: Color.fromARGB(255, 209, 208, 208),
+                  )
+                ]);
               },
             ),
     );

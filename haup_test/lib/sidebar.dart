@@ -8,6 +8,7 @@ class Sidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor:Color.fromARGB(255, 236, 234, 226),
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
@@ -36,11 +37,11 @@ class Sidebar extends StatelessWidget {
          ),
           const ListTile(
             leading: Icon(Icons.language),
-            title: Text("Language"),
+            title: Text("Language",style: TextStyle(color: Color(0xFF254336),fontSize: 18 ,fontWeight: FontWeight.bold),),
           ),
           const Divider(
             height: 1,
-            color: Color.fromARGB(255, 222, 220, 220),
+            color: Color(0xFF254336),
           ),
           ListTile(
             title: const Text("ไทย"),

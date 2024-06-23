@@ -19,7 +19,7 @@ class Details extends StatelessWidget {
             Center(
               child: product['thumbnail'] != null
                   ? Image.network(
-                      product['images'][0],
+                      product['thumbnail'],
                       height: 200,
                       width: 200,
                       fit: BoxFit.contain,
@@ -29,7 +29,10 @@ class Details extends StatelessWidget {
             const SizedBox(height: 20),
             const Text(
               'Description:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF254336)),
             ),
             const SizedBox(height: 8),
             Text(
@@ -37,19 +40,42 @@ class Details extends StatelessWidget {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
-            Text(
-              'Price: \$${product['price']?.toString() ?? 'N/A'}',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                const Text(
+                  'Price: ',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF254336)),
+                ),
+                Text("${product['price']} \$",
+                    style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green)),
+              ],
             ),
             const SizedBox(height: 8),
-            Text(
-              'Rating: ${product['rating']?.toString() ?? 'N/A'}',
-              style: const TextStyle(fontSize: 16),
+            Row(
+              children: [
+                const Text(
+                  'Rating: ',
+                  style: TextStyle(fontSize: 16),
+                ),
+                Text(
+                  product['rating'].toString(),
+                  style: const TextStyle(color: Color.fromARGB(255, 235, 200, 2),fontWeight: FontWeight.bold,fontSize: 16),
+                )
+              ],
             ),
             const SizedBox(height: 20),
             Text(
               'Brand: ${product['brand'] ?? 'Unknown'}',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF254336)),
             ),
             const SizedBox(height: 8),
             Text(
@@ -59,7 +85,10 @@ class Details extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               'Stock: ${product['stock']?.toString() ?? 'N/A'}',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF254336)),
             ),
             const SizedBox(height: 8),
             Text(
@@ -69,7 +98,10 @@ class Details extends StatelessWidget {
             const SizedBox(height: 20),
             const Text(
               'Shipping Information:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF254336)),
             ),
             const SizedBox(height: 8),
             Text(
@@ -79,7 +111,10 @@ class Details extends StatelessWidget {
             const SizedBox(height: 20),
             const Text(
               'Return Policy:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF254336)),
             ),
             const SizedBox(height: 8),
             Text(
@@ -89,7 +124,10 @@ class Details extends StatelessWidget {
             const SizedBox(height: 20),
             const Text(
               'Reviews:',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF254336)),
             ),
             const SizedBox(height: 8),
             Column(
@@ -98,7 +136,9 @@ class Details extends StatelessWidget {
                     return ListTile(
                         title: Text(
                           '${review['rating']} stars',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF254336)),
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,8 +147,9 @@ class Details extends StatelessWidget {
                             const SizedBox(height: 4),
                             Text(
                               'Reviewed by ${review['reviewerName']}',
-                              style:
-                                  const TextStyle(fontStyle: FontStyle.italic),
+                              style: const TextStyle(
+                                  fontStyle: FontStyle.italic,
+                                  color: Color(0xFF254336)),
                             ),
                           ],
                         ),
@@ -120,7 +161,7 @@ class Details extends StatelessWidget {
                                     ? Icons.star
                                     : Icons.star_border,
                                 color: index < review['rating']
-                                    ? Color.fromARGB(255, 226, 204, 5)
+                                    ? const Color.fromARGB(255, 235, 200, 2)
                                     : Colors.white,
                               );
                             })));

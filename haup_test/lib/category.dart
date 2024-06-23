@@ -42,9 +42,14 @@ class _CategorysState extends State<Categorys> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: currentLanguage == 'en'? const Text('Categories', style: TextStyle(fontSize: 24,color: Colors.white)):const Text('หมวดหมู่สินค้า', style: TextStyle(fontSize: 24,color: Colors.white)) ,
-        backgroundColor: Colors.green,
-        iconTheme: const IconThemeData(color: Colors.white),
+        title: currentLanguage == 'en'
+            ? const Text('Home',
+                style: TextStyle(fontSize: 24, color: Color(0xFFDAD3BE)))
+            : const Text('หน้าหลัก',
+                style: TextStyle(fontSize: 24, color: Color(0xFFDAD3BE))),
+        backgroundColor: const Color(0xFF254336),
+        iconTheme: const IconThemeData(color: Color(0xFFDAD3BE)),
+        centerTitle: true,
       ),
       drawer: Sidebar(
         onLanguageChanged: changeLanguage,
@@ -52,6 +57,22 @@ class _CategorysState extends State<Categorys> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Center(
+              child: currentLanguage == "en"
+                  ? const Text(
+                      "Category",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF254336)),
+                    )
+                  : const Text(
+                      "หมวดหมู่สินค้า",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF254336)),
+                    )),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
             decoration: const BoxDecoration(
@@ -85,7 +106,7 @@ class _CategorysState extends State<Categorys> {
                     child: Container(
                       padding: const EdgeInsets.all(15),
                       decoration: BoxDecoration(
-                        color: Colors.green,
+                        color: const Color(0xFF6B8A7A),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Column(
@@ -95,9 +116,9 @@ class _CategorysState extends State<Categorys> {
                             result["name"],
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Color(0xFFDAD3BE),
                             ),
                           ),
                           const SizedBox(height: 8),

@@ -40,10 +40,10 @@ class _ProductListsState extends State<ProductLists> {
         title: Text(
           widget.path.toUpperCase(),
           style: const TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+              fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFDAD3BE)),
         ),
-        backgroundColor: Colors.green,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor:const Color(0xFF254336),
+        iconTheme: const IconThemeData(color: Color(0xFFDAD3BE)),
         centerTitle: true,
       ),
       body: _products == null

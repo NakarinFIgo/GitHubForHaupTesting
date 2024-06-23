@@ -42,7 +42,9 @@ class _CategorysState extends State<Categorys> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: currentLanguage == 'en'? const Text('Categories', style: TextStyle(fontSize: 24)):const Text('หมวดหมู่สินค้า', style: TextStyle(fontSize: 24)) ,
+        title: currentLanguage == 'en'? const Text('Categories', style: TextStyle(fontSize: 24,color: Colors.white)):const Text('หมวดหมู่สินค้า', style: TextStyle(fontSize: 24,color: Colors.white)) ,
+        backgroundColor: Colors.green,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: Sidebar(
         onLanguageChanged: changeLanguage,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:haup_test/detail.dart';
 import 'package:http/http.dart' as http;
 
 class ProductLists extends StatefulWidget {
@@ -53,6 +54,15 @@ class _ProductListsState extends State<ProductLists> {
                 final product = _products![index];
                 return Column(children: [
                   ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              Details(product: product),
+                        ),
+                      );
+                    },
                     leading: Image.network(
                       product['thumbnail'],
                       fit: BoxFit.contain,

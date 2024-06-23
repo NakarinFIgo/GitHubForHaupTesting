@@ -33,6 +33,14 @@ class Sidebar extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
+         ),
+          const ListTile(
+            leading: Icon(Icons.language),
+            title: Text("Language"),
+          ),
+          const Divider(
+            height: 1,
+            color: Color.fromARGB(255, 222, 220, 220),
           ),
           ListTile(
             title: const Text("ไทย"),

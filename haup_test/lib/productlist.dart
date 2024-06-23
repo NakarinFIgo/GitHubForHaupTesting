@@ -1,65 +1,54 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haup_test/detail.dart';
-import 'package:http/http.dart' as http;
+import 'bloc/bloc_shop_bloc.dart';
 
-class ProductLists extends StatefulWidget {
+class ProductLists extends StatelessWidget {
   final String path;
   const ProductLists({super.key, required this.path});
 
   @override
-  State<ProductLists> createState() => _ProductListsState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => BlocShopBloc()..add(FetchProduct(path)),
+      child: ProductListsView(path: path),
+    );
+  }
 }
 
-class _ProductListsState extends State<ProductLists> {
-  List<dynamic>? _products;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchProductDetail();
-  }
-
-  Future<void> fetchProductDetail() async {
-    final response = await http.get(
-        Uri.parse('https://dummyjson.com/products/category/${widget.path}'));
-    if (response.statusCode == 200) {
-      setState(() {
-        _products = json.decode(response.body)['products'];
-      });
-    } else {
-      // Handle the error
-      throw Exception('Failed to load products');
-    }
-  }
+class ProductListsView extends StatelessWidget {
+  final String path;
+  const ProductListsView({super.key, required this.path});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.path.toUpperCase(),
+          path.toUpperCase(),
           style: const TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFFDAD3BE)),
         ),
-        backgroundColor:const Color(0xFF254336),
+        backgroundColor: const Color(0xFF254336),
         iconTheme: const IconThemeData(color: Color(0xFFDAD3BE)),
         centerTitle: true,
       ),
-      body: _products == null
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: _products?.length,
+      body: BlocBuilder<BlocShopBloc, BlocShopState>(
+        builder: (context, state) {
+          if (state is BlocShopLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is BlocShopLoaded) {
+            return ListView.builder(
+              itemCount: state.products.length,
               itemBuilder: (context, index) {
-                final product = _products![index];
+                final product = state.products[index];
                 return Column(children: [
                   ListTile(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              Details(product: product),
+                          builder: (context) => Details(product: product),
                         ),
                       );
                     },
@@ -88,7 +77,14 @@ class _ProductListsState extends State<ProductLists> {
                   )
                 ]);
               },
-            ),
+            );
+          } else if (state is BlocShopError) {
+            return Center(child: Text('Error: ${state.errorMessage}'));
+          } else {
+            return Container();
+          }
+        },
+      ),
     );
   }
 }

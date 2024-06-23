@@ -65,7 +65,7 @@ class Details extends StatelessWidget {
                 ),
                 Text(
                   product['rating'].toString(),
-                  style: const TextStyle(color: Color.fromARGB(255, 235, 200, 2),fontWeight: FontWeight.bold,fontSize: 16),
+                  style: const TextStyle(color: Color.fromARGB(255, 230, 196, 9),fontWeight: FontWeight.bold,fontSize: 16),
                 )
               ],
             ),

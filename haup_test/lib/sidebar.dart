@@ -8,7 +8,7 @@ class Sidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor:Color.fromARGB(255, 236, 234, 226),
+      backgroundColor:const Color.fromARGB(255, 236, 234, 226),
       child: ListView(
         children: [
           UserAccountsDrawerHeader(

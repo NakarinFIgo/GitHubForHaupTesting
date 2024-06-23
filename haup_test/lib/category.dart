@@ -31,45 +31,73 @@ class _CategorysState extends State<Categorys> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text('Categories',style: TextStyle(fontSize: 24),),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 380,
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 5,),
             decoration: const BoxDecoration(
-              border: Border(bottom: BorderSide(color: Colors.purple,width: 4))
+              border: Border(bottom: BorderSide(color:Color.fromARGB(74, 46, 44, 44), width: 1)),
             ),
-            child: const Text("Category",
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.purple
-            )
-            ,),
           ),
           Expanded(
-              child: ListView.builder(
-                  itemCount: futureCategories.length,
-                  itemBuilder: (context, index) {
-                    final result = futureCategories[index];
-                    return ListTile(
-                      title: Row(children: [
-                        Text(result["name"]),
-                      ]),
-                      subtitle: Text(result["slug"]),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    ProductLists(path: result['slug'])));
-                      },
-                    );
-                  }))
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
+                ),
+                itemCount: futureCategories.length,
+                itemBuilder: (context, index) {
+                  final result = futureCategories[index];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductLists(path: result['slug']),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            result["name"],
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            result["slug"],
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );

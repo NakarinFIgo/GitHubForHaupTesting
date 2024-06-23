@@ -36,8 +36,9 @@ class _ProductListsState extends State<ProductLists> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Product List"),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.path.toUpperCase(),style: const TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: Colors.white),),
+        backgroundColor: Colors.green,
+        iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: _products == null
@@ -47,10 +48,14 @@ class _ProductListsState extends State<ProductLists> {
               itemBuilder: (context, index) {
                 final product = _products![index];
                 return ListTile(
-                  leading: Image.network(product['thumbnail']),
+                  leading: Image.network(product['thumbnail'],
+                  fit: BoxFit.contain,
+                  width: 100,
+                  height: 80,
+                  ),
                   title: Text(product['title']),
-                  subtitle: Text(product['description']),
-                  trailing: Text('\$${product['price']}'),
+                  subtitle: Text(product['description'],maxLines: 2,),
+                  trailing: Text('\$${product['price']}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.green,fontSize: 16),),
                 );
               },
             ),
